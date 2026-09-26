@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -16,10 +16,34 @@ export default function SongScreen() {
 
   const song = songs.find((item) => item.id === id);
 
+  // =========================
+  // TAILLE DE POLICE
+  // =========================
+  const [fontSize, setFontSize] = useState(18);
+  const [showFontSize, setShowFontSize] = useState(false);
+
+  const MIN_FONT_SIZE = 14;
+  const MAX_FONT_SIZE = 28;
+  const FONT_STEP = 2;
+
+  const decreaseFontSize = () => {
+    setFontSize((current) =>
+      Math.max(MIN_FONT_SIZE, current - FONT_STEP),
+    );
+  };
+
+  const increaseFontSize = () => {
+    setFontSize((current) =>
+      Math.min(MAX_FONT_SIZE, current + FONT_STEP),
+    );
+  };
+
   if (!song) {
     return (
       <View style={styles.center}>
-        <Text style={styles.errorText}>Chanson introuvable</Text>
+        <Text style={styles.errorText}>
+          Chanson introuvable
+        </Text>
 
         <Pressable
           style={styles.backHomeButton}
@@ -84,13 +108,25 @@ export default function SongScreen() {
         {/* Petit indicateur */}
         <View style={styles.lyricsHeader}>
           <View style={styles.line} />
-          <Text style={styles.lyricsLabel}>PAROLES</Text>
+
+          <Text style={styles.lyricsLabel}>
+            PAROLES
+          </Text>
+
           <View style={styles.line} />
         </View>
 
         {/* Paroles */}
         <View style={styles.lyricsCard}>
-          <Text style={styles.lyrics}>
+          <Text
+            style={[
+              styles.lyrics,
+              {
+                fontSize,
+                lineHeight: Math.round(fontSize * 1.75),
+              },
+            ]}
+          >
             {song.lyrics}
           </Text>
         </View>
@@ -99,6 +135,87 @@ export default function SongScreen() {
           Chantez avec votre chorale 🎶
         </Text>
       </ScrollView>
+
+      {/* =========================
+          CONTROLE FLOTTANT
+      ========================= */}
+
+      {showFontSize && (
+        <View style={styles.fontPopup}>
+          <Text style={styles.fontPopupTitle}>
+            Taille du texte
+          </Text>
+
+          <View style={styles.fontControls}>
+            {/* A- */}
+            <Pressable
+              style={({ pressed }) => [
+                styles.fontButton,
+                fontSize <= MIN_FONT_SIZE &&
+                  styles.fontButtonDisabled,
+                pressed && styles.pressed,
+              ]}
+              onPress={decreaseFontSize}
+              disabled={fontSize <= MIN_FONT_SIZE}
+            >
+              <Text
+                style={[
+                  styles.fontButtonTextSmall,
+                  fontSize <= MIN_FONT_SIZE &&
+                    styles.fontButtonTextDisabled,
+                ]}
+              >
+                A−
+              </Text>
+            </Pressable>
+
+            {/* Taille actuelle */}
+            <View style={styles.fontSizeValue}>
+              <Text style={styles.fontSizeValueText}>
+                {fontSize}
+              </Text>
+            </View>
+
+            {/* A+ */}
+            <Pressable
+              style={({ pressed }) => [
+                styles.fontButton,
+                fontSize >= MAX_FONT_SIZE &&
+                  styles.fontButtonDisabled,
+                pressed && styles.pressed,
+              ]}
+              onPress={increaseFontSize}
+              disabled={fontSize >= MAX_FONT_SIZE}
+            >
+              <Text
+                style={[
+                  styles.fontButtonTextLarge,
+                  fontSize >= MAX_FONT_SIZE &&
+                    styles.fontButtonTextDisabled,
+                ]}
+              >
+                A+
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      )}
+
+      {/* BOUTON FLOTTANT */}
+      <Pressable
+        style={({ pressed }) => [
+          styles.fontFloatingButton,
+          showFontSize && styles.fontFloatingButtonActive,
+          pressed && styles.pressed,
+        ]}
+        onPress={() =>
+          setShowFontSize((current) => !current)
+        }
+      >
+        <Text style={styles.fontFloatingText}>
+          Aa
+        </Text>
+      </Pressable>
     </View>
   );
 }
@@ -175,7 +292,7 @@ const styles = StyleSheet.create({
     fontSize: 38,
     fontWeight: '300',
 
-    marginTop: -4,
+    marginTop: -7,
   },
 
   headerInfo: {
@@ -211,7 +328,7 @@ const styles = StyleSheet.create({
   lyricsContainer: {
     paddingHorizontal: 20,
     paddingTop: 25,
-    paddingBottom: 50,
+    paddingBottom: 100,
   },
 
   lyricsHeader: {
@@ -259,10 +376,6 @@ const styles = StyleSheet.create({
 
   lyrics: {
     color: COLORS.text,
-
-    fontSize: 18,
-    lineHeight: 32,
-
     fontWeight: '400',
   },
 
@@ -274,6 +387,145 @@ const styles = StyleSheet.create({
     color: COLORS.secondaryText,
     fontSize: 13,
     fontStyle: 'italic',
+  },
+
+  /* =========================
+     POPUP FLOTTANT
+  ========================= */
+
+  fontPopup: {
+    position: 'absolute',
+
+    right: 53,
+    bottom: 112,
+
+    width: 190,
+
+    backgroundColor: COLORS.card,
+
+    borderRadius: 18,
+
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+
+    borderWidth: 1,
+    borderColor: COLORS.border,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+
+  fontPopupTitle: {
+    textAlign: 'center',
+
+    color: COLORS.text,
+    fontSize: 13,
+    fontWeight: '600',
+
+    marginBottom: 12,
+  },
+
+  fontControls: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    gap: 8,
+  },
+
+  fontButton: {
+    width: 42,
+    height: 38,
+
+    borderRadius: 10,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    backgroundColor: COLORS.background,
+
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+
+  fontButtonDisabled: {
+    opacity: 0.4,
+  },
+
+  fontButtonTextSmall: {
+    color: COLORS.primary,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+
+  fontButtonTextLarge: {
+    color: COLORS.primary,
+    fontSize: 18,
+    fontWeight: '700',
+  },
+
+  fontButtonTextDisabled: {
+    color: COLORS.secondaryText,
+  },
+
+  fontSizeValue: {
+    minWidth: 38,
+    height: 38,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  fontSizeValueText: {
+    color: COLORS.text,
+    fontSize: 13,
+    fontWeight: '700',
+  },
+
+  /* =========================
+     BOUTON FLOTTANT
+  ========================= */
+
+  fontFloatingButton: {
+    position: 'absolute',
+
+    right: 20,
+    bottom: 65,
+
+    width: 54,
+    height: 54,
+
+    borderRadius: 27,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    backgroundColor: COLORS.primary,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 7,
+  },
+
+  fontFloatingButtonActive: {
+    backgroundColor: COLORS.primaryDark,
+  },
+
+  fontFloatingText: {
+    color: COLORS.white,
+    fontSize: 18,
+    fontWeight: '700',
   },
 
   /* =========================
