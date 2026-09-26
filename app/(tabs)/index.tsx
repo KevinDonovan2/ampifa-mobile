@@ -14,25 +14,25 @@ export default function HomeScreen() {
       title: 'Hira',
       subtitle: 'Chants',
       icon: '♪',
-      route: '/songs/hira',
+      route: '/song/hira',
     },
     {
       title: 'Tantara',
       subtitle: 'Histoires',
       icon: '📖',
-      route: '/songs/tantara',
+      route: '/song/tantara',
     },
     {
       title: 'Fiderana mihetsika',
       subtitle: 'Louanges rythmées',
       icon: '♫',
-      route: '/songs/fiderana-mihetsika',
+      route: '/song/fideranaMihetsika',
     },
     {
       title: 'Fiderana milamina',
       subtitle: 'Louanges calmes',
       icon: '♬',
-      route: '/songs/fiderana-milamina',
+      route: '/song/fideranaMilamina',
     },
   ];
 

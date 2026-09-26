@@ -535,5 +535,89 @@ Dia Jiosy ohatran-tsika izao
 No mamadika palitao
 Oh leretsy e,
 Tsy mba menatra ve ?`,
+  },{
+    id: '21',
+    title: 'Satria Natsapa',
+    artist: 'AMPIFA',
+    category: 'Hira Milamina',
+    lyrics: `ray o oentiko ankalaza anao
+Zao hira2 ataoko izao
+mendrika ny ho deraina inao sy omena voninahitra ah
+izao rehetra hita izao 
+de maneho izany avokoa
+satria natsapa fa nahazo soa avy aminao tsitoha
+
+Refrain :
+eh ny hatsaran'ny asa-tananao 
+toa mampiaiky toa tsy mampino
+ny vorona aza moa tsy nisasatra fa mitady sy mihinana
+ny rano sny rivotra madio
+mamelombelona ahy
+ny Andro sy ny Alina natao iasana sy itsaharana
+
+mbola hiderako anao ho koa 
+ireo zava- bitanao
+satria ianao no mbola nanome 
+ny saina hikaroka nampahay 
+izao rehetra hita izao 
+de maneho izany avokoa
+satria natsapa fa nahazo soa avy aminao tsitoha`,
+  },{
+    id: '22',
+    title: 'TSARA LOATRA',
+    artist: 'AMPIFA',
+    category: 'Hira Mihetsika',
+    lyrics: `Zava-boahary noharian'ny tananao
+Ny tenako matoa mijoro eto izao
+Zava-boahary nisy noho n'y teninao
+Izay rehetra manodidina ahy
+Mihaiky aho,manaiky eh
+Ny halehiben'ny Voninahitrao (x2)
+Ohhh
+Ka hanandratra Fiderana eeh
+Rainay oh
+Rainay oh Rainay oh
+Tsara Loatra ny Asanao
+Rainay oh Rainay oh
+Ka hanandratra Fiderana Anao zahay
+Rainay oh Rainay oh 
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh
+
+Niteny Izy hoe Misia dia nisy ny mazava
+Tany tsy nisy endrika nasiany tendrombohitra avo
+Ny hazon-drano Ary ny rivotra iainako
+Karazam-biby izay Mbola maro tsy fantatro eh
+Nataony tahaka ny endriny aho,mitovy Aminy
+Ray oh! Izany no Antony hideranay ny Anaranao
+Mandrakizay
+
+Rainay oh
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh 
+Tsara Loatra ny Asanao 
+Tsara Loatra ny Asanao eh
+Rainay oh Rainay oh 
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh 
+Ka hanandratra Fiderana Anao zahay 
+Rainay oh Rainay oh 
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh 
+Tsara Loatra 
+Tsara Loatra eh
+Tsara Loatra ny Asanao Rainay
+Tsara Loatra Tsara Loatra eh
+Feno fahatanterahana eh
+Tsara Loatra Tsara Loatra eh
+Hatramin'ny Kely ka Hatramin'ny lehibe indrindra eh
+Tsara Loatra Tsara Loatra eh
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh 
+Haleloia
+Rainay oh Rainay oh 
+Tsara Loatra ny Asanao 
+Rainay oh Rainay oh 
+Tsara Loatra`,
   },
 ];
